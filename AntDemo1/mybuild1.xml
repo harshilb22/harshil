@@ -1,0 +1,21 @@
+<?xml version= "1.0"?>
+<project name="hello" default="compile" basedir=".">
+
+
+	<property name="svar" location="src" />
+	<property name="cvar" location="classes" />
+
+	<target name="clean" description="delete folders">
+		<delete dir="${cvar}" />
+	</target>
+
+	<target name="init" description="create folders" depends="clean">
+		<mkdir dir="${cvar}" />
+	</target>
+	<target name="compile" description="compile java classes of src" depends="init">
+		<javac srcdir="${svar}" destdir="${cvar}" />
+	</target>
+	<target name="run">
+		<java dir="${cvar}" classname="com.sapient.beans.HelloWorld" fork="true" />
+	</target>
+</project>
