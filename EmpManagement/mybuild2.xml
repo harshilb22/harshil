@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<project name="hello" default="jdoc" basedir=".">
+
+
+	<property file="src/sap.properties" />
+	<target name="clean" description="remove folders">
+		<delete dir="${dvar}" />
+	</target>
+
+	<target name="init" description="create folders" depends="clean">
+		<mkdir dir="${dvar}" />
+	</target>
+
+	<target name="jdoc" description="creating java doc" depends="init">
+		<javadoc packagenames="com.*" sourcepath="${svar}" destdir="${dvar}"
+			version="true" windowtitle="EMP portal">
+
+			<doctitle>Emp Management</doctitle>
+
+			<bottom>
+              Copyright © 2011. All Rights Reserved.
+			</bottom>
+
+
+		</javadoc>
+
+		<echo message="java doc has been generated!" />
+	</target>
+</project>
