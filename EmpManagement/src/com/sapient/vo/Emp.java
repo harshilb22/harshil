@@ -1,5 +1,6 @@
 package com.sapient.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Date;
  *
  */
 public class Emp implements Comparable<Emp> {
-
+	public static SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
 	private int empId;
 	private String empName;
 	private double empSal;
@@ -113,7 +114,7 @@ public class Emp implements Comparable<Emp> {
 	 */
 	@Override
 	public String toString() {
-		return empId + " " + empName + " " + empSal + " " + dept + " " + doj;
+		return empId + " " + empName + " " + empSal + " " + dept + " " + sdf.format(doj);
 	}
 
 	/**
@@ -123,7 +124,8 @@ public class Emp implements Comparable<Emp> {
 	@Override
 	public boolean equals(Object obj) {
 		Emp emp = (Emp) obj;
-		if (this.empId == emp.empId)
+		if (this.empId == emp.empId && this.empName.equals(emp.empName) && this.empSal == emp.empSal
+				&& this.dept.equals(emp.dept) && this.doj.compareTo(emp.doj) == 0)
 			return true;
 		else
 			return false;
@@ -151,6 +153,15 @@ public class Emp implements Comparable<Emp> {
 			return -1;
 		else
 			return 0;
+	}
+
+	public Emp(int empId, String empName, double empSal, String dept, Date doj) {
+		super();
+		this.empId = empId;
+		this.empName = empName;
+		this.empSal = empSal;
+		this.dept = dept;
+		this.doj = doj;
 	}
 
 }
