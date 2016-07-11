@@ -2,7 +2,7 @@ package com.sap.actual;
 
 public class Calculator {
 	public double calcSeries(int a, int b, int c) {
-		double sum = (a + b + c) / 2.0;
+		double sum = (a + b + c) / 2;
 		return sum;
 	}
 

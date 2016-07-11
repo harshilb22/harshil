@@ -1,0 +1,37 @@
+<project name="test" default="test">
+	<target name="clean" description="remove folders">
+		<delete dir="classes" />
+		<delete dir="reports" />
+	</target>
+
+	<target name="init" description="create folders" depends="clean">
+		<mkdir dir="classes" />
+		<mkdir dir="reports" />
+		
+	</target>
+	<target name="compile" description="compile java classes of src" depends="init">
+		<javac srcdir="src" destdir="classes" />
+	</target>
+
+	<target name="test" depends="compile">
+
+		<junit fork="yes" printsummary="yes" haltonfailure="no">
+
+			<formatter type="xml" />
+			<test name="com.sap.test.AllTests" toDir="reports"/>
+			<classpath>
+				<path location="classes"/>
+			</classpath>
+		</junit>
+       </target>
+		<target name="report" depends="test">
+		<junitreport>
+			<fileset dir="reports">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report todir="reports/html" />
+		</junitreport>
+	</target>
+</project>
+
+
